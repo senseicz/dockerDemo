@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+    demoapi:
+        #build: .
+        image: demoapi
+        ports:
+            - 8080:80
+    profileapi:
+        image: nodeapi
+        ports:
+            - 5000:5000
+#	mailhog:
+#        image: mailhog/mailhog
+#        ports:
+#            - 1025:1025
+#            - 8025:8025
+#    mailer:
+#        build: .
+#        environment:
+#            - MAILER_SMTP_SERVER_HOST=mailhog
+#			- MAILER_SMTP_SERVER_PORT=1025
