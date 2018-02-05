@@ -2,12 +2,13 @@ version: '2'
 
 services:
     demoapi:
-        #build: .
+        #build: ./demoapi
         image: demoapi
         ports:
             - 8080:80
-    profileapi:
-        image: nodeapi
+    nodejsapi:
+        #build: ./nodejsapi
+        image: nodejsapi
         ports:
             - 5000:5000
 #	mailhog:
