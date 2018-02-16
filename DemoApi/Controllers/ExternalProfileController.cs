@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using DemoApi.Services;
+using MassTransit;
+using Messages;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DemoApi.Controllers
@@ -8,11 +10,13 @@ namespace DemoApi.Controllers
     [Route("api/[controller]")]
     public class ExternalProfileController : Controller
     {
-        private ProfileService _profileService;
+        private readonly ProfileService _profileService;
+        private readonly IBus _bus;
 
-        public ExternalProfileController(ProfileService profileService)
+        public ExternalProfileController(ProfileService profileService, IBus bus)
         {
             _profileService = profileService;
+            _bus = bus;
         }
 
         [HttpGet("{id}")]
@@ -21,6 +25,13 @@ namespace DemoApi.Controllers
             try
             {
                 var profile = await _profileService.GetExternalProfile(id);
+
+                if (profile != null)
+                {
+                    var addUserEndpoint = await _bus.GetSendEndpoint(new Uri("rabbitmq://localhost/SendUserProfile"));
+                    await addUserEndpoint.Send<ISendUserProfile>(new {UserProfile = profile});
+                }
+
                 return Ok(profile);
             }
             catch (Exception ex)

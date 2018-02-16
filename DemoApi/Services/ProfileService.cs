@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using DemoApi.Domain;
+using Messages;
 using Newtonsoft.Json;
 
 namespace DemoApi.Services
@@ -13,12 +9,11 @@ namespace DemoApi.Services
     public class ProfileService
     {
         //private const string ProfileServiceHost = "localhost";
-        private const string ProfileServiceHost = "profileapi";
+        private const string ProfileServiceHost = "nodejsapi";
         private const string ProfileServicePort = "5000";
 
-        public async Task<Profile> GetExternalProfile(int profileId)
+        public async Task<UserProfile> GetExternalProfile(int profileId)
         {
-            Profile profile = null;
             var externalApiUri = new Uri($"http://{ProfileServiceHost}:{ProfileServicePort}/api/profile/{profileId}");
 
             var client = new HttpClient();
@@ -29,7 +24,7 @@ namespace DemoApi.Services
             {
                 try
                 {
-                    profile = JsonConvert.DeserializeObject<Profile>(profileApiResponse);
+                    var profile = JsonConvert.DeserializeObject<UserProfile>(profileApiResponse);
                     return profile;
                 }
                 catch (Exception ex)

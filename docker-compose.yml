@@ -1,6 +1,11 @@
 version: '2'
 
 services:
+    rabbit:
+        #build: ./rabbitmq
+        image: myrabbit
+        ports: 
+            - 5672:5672
     demoapi:
         #build: ./demoapi
         image: demoapi
