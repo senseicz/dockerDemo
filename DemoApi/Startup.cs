@@ -37,7 +37,7 @@ namespace DemoApi
             builder.Register(c =>
                 {
                     return Bus.Factory.CreateUsingRabbitMq(sbc =>
-                        sbc.Host("localhost", "dockerdemo", h =>
+                        sbc.Host("rabbit", "dockerdemo", h =>
                         {
                             h.Username("docker");
                             h.Password("docker");

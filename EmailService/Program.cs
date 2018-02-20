@@ -8,7 +8,7 @@ namespace EmailService
         {
             var busControl = Bus.Factory.CreateUsingRabbitMq(cfg =>
             {
-                var host = cfg.Host("localhost", "dockerhost", h =>
+                var host = cfg.Host("rabbit", "dockerhost", h =>
                 {
                     h.Username("docker");
                     h.Password("docker");

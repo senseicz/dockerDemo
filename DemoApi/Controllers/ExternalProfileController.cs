@@ -28,7 +28,7 @@ namespace DemoApi.Controllers
 
                 if (profile != null)
                 {
-                    var addUserEndpoint = await _bus.GetSendEndpoint(new Uri("rabbitmq://localhost/SendUserProfile"));
+                    var addUserEndpoint = await _bus.GetSendEndpoint(new Uri("rabbitmq://rabbit/SendUserProfile"));
                     await addUserEndpoint.Send<ISendUserProfile>(new {UserProfile = profile});
                 }
 

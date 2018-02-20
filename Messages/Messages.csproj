@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>DockerDemo_Messages</PackageId>
+    <Authors>Antonin Jelinek</Authors>
+    <Company>AJ</Company>
+    <Product>DockerDemo_Messages</Product>
   </PropertyGroup>
 
 </Project>

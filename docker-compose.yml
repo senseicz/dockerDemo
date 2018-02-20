@@ -1,21 +1,29 @@
-version: '2'
+version: '3'
 
 services:
     rabbit:
-        #build: ./rabbitmq
+        build: ./rabbitmq
         image: myrabbit
         ports: 
             - 5672:5672
     demoapi:
-        #build: ./demoapi
+        build: ./demoapi
         image: demoapi
         ports:
             - 8080:80
+        depends_on: 
+            - "rabbit"
     nodejsapi:
-        #build: ./nodejsapi
+        build: ./nodejsapi
         image: nodejsapi
         ports:
             - 5000:5000
+    emailservice:
+        build: ./emailservice
+        image: emailservice
+        depends_on: 
+            - "rabbit"
+
 #	mailhog:
 #        image: mailhog/mailhog
 #        ports:
@@ -26,3 +34,9 @@ services:
 #        environment:
 #            - MAILER_SMTP_SERVER_HOST=mailhog
 #			- MAILER_SMTP_SERVER_PORT=1025
+
+
+
+
+
+#  https://www.nuget.org/packages/DockerDemo_Messages/1.0.0
