@@ -11,9 +11,9 @@ namespace DemoApi.Controllers
     public class ExternalProfileController : Controller
     {
         private readonly ProfileService _profileService;
-        private readonly IBus _bus;
+        private readonly IBusControl _bus;
 
-        public ExternalProfileController(ProfileService profileService, IBus bus)
+        public ExternalProfileController(ProfileService profileService, IBusControl bus)
         {
             _profileService = profileService;
             _bus = bus;
@@ -28,8 +28,9 @@ namespace DemoApi.Controllers
 
                 if (profile != null)
                 {
-                    var addUserEndpoint = await _bus.GetSendEndpoint(new Uri("rabbitmq://rabbit/SendUserProfile"));
+                    var addUserEndpoint = await _bus.GetSendEndpoint(new Uri("rabbitmq://rabbit/dockerdemo/SendUserProfile"));
                     await addUserEndpoint.Send<ISendUserProfile>(new {UserProfile = profile});
+                    Console.WriteLine("=====> Message sent over RabbitMq/MassTransit.");
                 }
 
                 return Ok(profile);

@@ -6,6 +6,7 @@ services:
         image: myrabbit
         ports: 
             - 5672:5672
+            - 15672:15672
     demoapi:
         build: ./demoapi
         image: demoapi
@@ -23,12 +24,11 @@ services:
         image: emailservice
         depends_on: 
             - "rabbit"
-
-#	mailhog:
-#        image: mailhog/mailhog
-#        ports:
-#            - 1025:1025
-#            - 8025:8025
+    mail:
+        image: mailhog/mailhog
+        ports:
+            - 1025:1025
+            - 8025:8025
 #    mailer:
 #        build: .
 #        environment:

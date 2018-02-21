@@ -7,8 +7,11 @@
 
   <ItemGroup>
     <PackageReference Include="DockerDemo_Messages" Version="1.0.0" />
+    <PackageReference Include="MailKit" Version="2.0.1" />
     <PackageReference Include="MassTransit" Version="4.0.1" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="4.0.1" />
+    <PackageReference Include="MimeKit" Version="2.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
   </ItemGroup>
 
   <ItemGroup>
