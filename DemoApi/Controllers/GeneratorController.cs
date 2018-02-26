@@ -8,13 +8,6 @@ namespace DemoApi.Controllers
     public class NamesController : Controller
     {
         [HttpGet]
-        public string Test()
-        {
-            return "Test";
-        }
-
-
-        [HttpGet]
         public IEnumerable<string> Names(Range range)
         {
             var names = range.Of(Name.FullName);

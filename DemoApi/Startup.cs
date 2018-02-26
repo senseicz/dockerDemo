@@ -34,6 +34,8 @@ namespace DemoApi
             });
 
             var builder = new ContainerBuilder();
+
+            
             builder.Register(c =>
                 {
                     return Bus.Factory.CreateUsingRabbitMq(sbc =>
@@ -47,7 +49,10 @@ namespace DemoApi
                 .As<IBusControl>()
                 .As<IPublishEndpoint>()
                 .SingleInstance();
+            
+
             builder.Populate(services);
+
             _container = builder.Build();
 
             // Create the IServiceProvider based on the _container.
@@ -70,6 +75,8 @@ namespace DemoApi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Generate Random Data API V1");
             });
 
+            
+
             //resolve the bus from the _container
             var bus = _container.Resolve<IBusControl>();
             //start the bus
@@ -77,6 +84,8 @@ namespace DemoApi
 
             //register an action to call when the application is shutting down
             lifetime.ApplicationStopping.Register(() => busHandle.Stop());
+
+            
         }
     }
 }

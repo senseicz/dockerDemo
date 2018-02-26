@@ -1,0 +1,54 @@
+
+
+-p: port mapping LOCAL:INNER_CONTAINER
+-d: daemon, run on background
+-i: interactive
+
+docker-compose build
+docker-compose up
+
+
+remove all containers:  docker rm $(docker ps -a -q)
+remove all images: docker rmi $(docker images -q)
+
+
+docker run -it alpine
+apk update
+apk upgrade
+apk add mc
+exit
+
+
+docker build . -t rabbit
+docker images
+docker run -i -p 15672:15672 rabbit
+
+http://localhost:15672
+
+docker ps
+docker kill 
+docker rm (remove container)
+docker rmi (remove image)
+
+
+docker build . -t demoapi
+docker run -d -p 8080:80 demoapi
+
+http://localhost:8080/swagger
+
+docker ps
+docker kill 
+docker rm (remove container)
+docker rmi (remove image)
+
+
+docker-compose up
+http://localhost:8080/swagger/
+http://localhost:8025/
+docker-compose down
+
+
+ 
+
+
+
